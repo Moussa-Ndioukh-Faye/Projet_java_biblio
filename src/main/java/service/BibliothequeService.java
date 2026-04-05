@@ -56,11 +56,9 @@ public class BibliothequeService {
                 throw new Exception("Document déjà emprunté");
             }
             Emprunt e = new Emprunt(membre, doc);
-            e.setMembreId(membre.getId());
-            e.setDocumentId(doc.getId());
+            e.setDateRetourPrevue(LocalDate.now().plusDays(dureeJours));
             e.setDateEmprunt(LocalDate.now());
-            e.setDateRetourPrevu(LocalDate.now().plusDays(dureeJours));
-
+           
             membre.ajouterEmprunt(e);
             doc.setDisponible(false);
 
