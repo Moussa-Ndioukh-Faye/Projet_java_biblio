@@ -2,6 +2,8 @@ package model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Représente un membre inscrit à la bibliothèque.
@@ -15,6 +17,7 @@ public class Membre {
     private LocalDate dateInscription;
     private double amendeTotal;
     private boolean actif;
+    private List<Emprunt> empruntsActifs = new ArrayList<>();
 
     private static final int MAX_EMPRUNTS_SIMULTANES = 5;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -42,6 +45,8 @@ public class Membre {
     public double getAmendeTotal()       { return amendeTotal; }
     public boolean isActif()             { return actif; }
     public int getMaxEmprunts()          { return MAX_EMPRUNTS_SIMULTANES; }
+    public List<Emprunt> getEmpruntsActifs() { return empruntsActifs; }
+    public double getAmendeDue() { return amendeTotal; }
 
     // ─── Setters ───────────────────────────────────────────────────────────
     public void setId(int id) {
@@ -113,4 +118,9 @@ public class Membre {
                 dateInscription != null ? dateInscription.format(FORMATTER) : "N/A",
                 amendeTotal, actif ? "Oui" : "Non");
     }
+    public void ajouterEmprunt(Emprunt e) {
+    if (empruntsActifs.size() >= MAX_EMPRUNTS_SIMULTANES)
+        throw new IllegalStateException("Nombre maximum d'emprunts atteint.");
+    empruntsActifs.add(e);
+}
 }

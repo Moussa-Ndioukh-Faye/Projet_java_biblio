@@ -13,6 +13,15 @@ public class Vehicule {
         this.kilometrage = 0;
         this.enService = true;
     }
+    public Vehicule(String immatriculation, double kilometrage, boolean enService) {
+    this.immatriculation = immatriculation;
+    this.kilometrage = kilometrage;
+    this.enService = enService;
+}
+
+public String getImmatriculation() { return immatriculation; }
+public double getKilometrage() { return kilometrage; }
+public boolean isEnService() { return enService; }
 
     public void effectuerLivraison(String destination, List<Document> docs) {
 

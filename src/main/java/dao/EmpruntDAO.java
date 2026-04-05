@@ -11,10 +11,10 @@ public class EmpruntDAO {
         try {
             Connection con = DatabaseManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, e.getMembreId());
-            ps.setInt(2, e.getDocumentId());
+            ps.setInt(1, e.getMembre().getId());
+            ps.setInt(2, e.getDocument().getId());
             ps.setDate(3, Date.valueOf(e.getDateEmprunt()));
-            ps.setDate(4, Date.valueOf(e.getDateRetourPrevu()));
+            ps.setDate(4, Date.valueOf(e.getDateRetourPrevue()));
             ps.executeUpdate();
             System.out.println("Emprunt sauvegardé !");
         } catch (SQLException ex) {
@@ -46,8 +46,8 @@ public class EmpruntDAO {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                System.out.println("Emprunt trouvé : membreId = " 
-                    + rs.getInt("membreId") 
+                System.out.println("Emprunt trouvé : membreId = "
+                    + rs.getInt("membreId")
                     + ", documentId = " + rs.getInt("documentId"));
             }
         } catch (SQLException ex) {
