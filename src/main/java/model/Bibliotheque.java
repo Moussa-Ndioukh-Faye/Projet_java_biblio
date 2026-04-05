@@ -108,10 +108,9 @@ public class Bibliotheque {
     }
 
     public Optional<Stock> trouverStockParDocument(int documentId) {
-        return stocks.stream()
-                .filter(s -> s.getDocument().getId() == documentId)
-                .findFirst();
-    }
+    return Optional.empty();
+}
+   
 
     // ─── Gestion des emprunts ─────────────────────────────────────────────
     public void ajouterEmprunt(Emprunt e) {
@@ -152,7 +151,7 @@ public class Bibliotheque {
     }
 
     public List<CapteurConservation> getCapteursEnAlerte() {
-        return capteurs.stream().filter(CapteurConservation::estEnAlerte).toList();
+        return capteurs.stream().filter(CapteurConservation::estHorsNorme).toList();
     }
 
     @Override

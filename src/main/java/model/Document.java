@@ -10,6 +10,7 @@ public abstract class Document {
     private String auteur;
     private int anneePublication;
     private String description;
+    private boolean disponible = true;
 
     public Document() {}
 
@@ -36,6 +37,7 @@ public abstract class Document {
     public String getAuteur()        { return auteur; }
     public int getAnneePublication() { return anneePublication; }
     public String getDescription()   { return description; }
+    public boolean isDisponible() { return disponible; }
 
     // ─── Setters ───────────────────────────────────────────────────────────
     public void setId(int id) {
@@ -63,7 +65,9 @@ public abstract class Document {
 
     public void setDescription(String description) {
         this.description = (description != null) ? description.trim() : "";
+
     }
+    public void setDisponible(boolean disponible) { this.disponible = disponible; }
 
     @Override
     public String toString() {
